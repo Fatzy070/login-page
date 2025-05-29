@@ -3,13 +3,13 @@ const fakePosts = [
     id: 1,
     title: "First Post",
     body: "This is the first post content.",
-    link: "https://example.com/post/1"
+    link: "https://kitchen-iota-green.vercel.app/"
   },
   {
     id: 2,
     title: "Another Update",
     body: "React is fun once you get the hang of it.",
-    link: "https://example.com/post/2"
+    link: "https://joyvinco-project.vercel.app/"
   },
   {
     id: 3,
