@@ -37,7 +37,7 @@ let Login = () => {
                 </div>
                 <div>
                     <label htmlFor="" className="font-semibold">Password:</label><br />
-                    <input type="text"
+                    <input type="password"
                     placeholder="Enter Your Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
