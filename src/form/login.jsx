@@ -1,56 +1,76 @@
 import { useState } from "react";
-import fakeUser from "../data/fakeuser"
+import fakeUser from "../data/fakeuser";
 import { useNavigate } from "react-router-dom";
 
-let Login = () => {
-    const [email , setEmail] = useState("")
-    const [error , setError]  = useState("")
-    const [password , setPassword] = useState("")
+const Login = () => {
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+  const [password, setPassword] = useState("");
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-        if (email === fakeUser.email && password === fakeUser.password ) {
-            localStorage.setItem("isloggedin" , "true")
-            navigate('/dashboard');
-        }else {
-            setError('invalid email or password ❌')
-        }
+    if (email === fakeUser.email && password === fakeUser.password) {
+      localStorage.setItem("isloggedin", "true");
+      navigate("/dashboard");
+    } else {
+      setError("Invalid email or password ❌");
     }
+  };
 
-    return ( <>
-        <div className="flex justify-center h-[100dvh] items-center">
-            <form action="" onSubmit={handleSubmit}>
-                <h2 className="text-center text-3xl uppercase font-bold text-pretty text-indigo-400">login</h2>
-                {error && <p>{error}</p>}
+  return (
+    <div className="flex justify-center items-center h-[100dvh] bg-gray-100">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white shadow-xl rounded-2xl p-8 w-full max-w-sm animate-fade-in"
+      >
+        <h2 className="text-center text-3xl font-bold text-indigo-600 mb-6 uppercase tracking-wider">
+          Login
+        </h2>
 
-                <div className="mb-4">
-                    <label htmlFor="" className="font-semibold">Email:</label> <br />
-                    <input type="text"
-                    placeholder="Enter Your Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                     className="border outline-none h-8 px-2"
-                    />
-                </div>
-                <div>
-                    <label htmlFor="" className="font-semibold">Password:</label><br />
-                    <input type="password"
-                    placeholder="Enter Your Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                   className="border outline-none h-8 px-2"
-                     />
-                </div>
-                <div className="flex justify-center">
-                    <button type="submit" className="mt-6 bg-amber-800 font-semibold capitalize text-white px-4 py-2 rounded">
-                    login
-                </button>
-                </div>
-            </form>
+        {error && (
+          <p className="text-red-500 text-sm text-center mb-4">{error}</p>
+        )}
+
+        <div className="mb-5">
+          <label className="font-semibold block mb-1">Email:</label>
+          <input
+            type="text"
+            placeholder="Enter Your Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+          />
         </div>
-    </>)
-}
-export default Login
+
+        <div className="mb-6">
+          <label className="font-semibold block mb-1">Password:</label>
+          <input
+            type="password"
+            placeholder="Enter Your Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="w-full bg-indigo-600 hover:bg-indigo-700 transition-all text-white py-2 rounded-lg font-semibold"
+        >
+          Login
+        </button>
+
+        {/* Optional: Login instructions */}
+        <ul className="list-disc pl-5 mt-6 text-sm text-gray-600 space-y-1">
+          <li>Use the correct email and password</li>
+          <li>Details must match our records</li>
+        </ul>
+      </form>
+    </div>
+  );
+};
+
+export default Login;
